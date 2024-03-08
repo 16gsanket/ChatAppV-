@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/output.css" />
+  </head>
+  <body
+    class="h-screen w-screen bg-slate-700 flex align-middle justify-center items-center"
+  >
+    <div class="h-5/6 w-8/12 bg-slate-800 pt-5 pl-3 pr-3 relative">
+      <div class="h-5/6 w-full relative">
+        <div
+          class="bg-slate-950 text-white h-1/6 w-3/12 grid place-content-center relative left-9"
+          id="recieve"
+        >
+          <h4>Hi David!</h4>
+        </div>
+
+        <div
+          class="bg-slate-900 text-white h-1/6 w-3/12 grid place-content-center relative left-3/4 mr-4"
+          id="send"
+        >
+          <h4>Hi David!</h4>
+        </div>
+      </div>
+      <div
+        class="h-1/6 w-full border-t-[1px] flex align-middle justify-center items-center gap-2"
+      >
+        <input type="text" class="h-3/6 w-10/12" />
+        <button class="h-3/6 w-1/12 bg-green-950 text-white">Send</button>
+      </div>
+    </div>
+  </body>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+
+    document.querySelector("button").addEventListener("click", (event) => {
+      socket.emit("message", document.querySelector("input").value);
+    });
+
+    socket.on("messageRecieved", (msg) => {
+      console.log("message from serrver of channel" +msg);
+
+    });
+  </script>
+</html>
