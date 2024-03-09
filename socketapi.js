@@ -9,8 +9,9 @@ io.on("connection", function (socket) {
 
   socket.on("message", (msg) => {
     console.log(msg);
+    socket.broadcast.emit("message",msg)
   });
-  socket.emit("messageRecieved", "message recived");
+  
 });
 // end of socket.io logic
 
